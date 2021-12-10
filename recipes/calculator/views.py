@@ -20,43 +20,16 @@ DATA = {
 }
 
 
-def omlet(request):
+def recipe(request, dish):
     portion = int(request.GET.get('servings', 1))
+    dish = DATA.get(dish)
     menu_portion = {}
-    for key, values in DATA.items():
-        if key == 'omlet':
-            for i in values:
-                menu_portion[i] = values[i] * portion
+    for key, values in dish.items():
+        menu_portion[key] = round(values * portion, 2)
     context = {
+        'dish': dish,
         'recipe': menu_portion,
     }
 
     return render(request, 'calculator/index.html', context)
 
-
-def pasta(request):
-    portion = int(request.GET.get('servings', 1))
-    menu_portion = {}
-    for key, values in DATA.items():
-        if key == 'pasta':
-            for i in values:
-                menu_portion[i] = values[i] * portion
-    context = {
-        'recipe': menu_portion,
-    }
-
-    return render(request, 'calculator/index.html', context)
-
-
-def buter(request):
-    portion = int(request.GET.get('servings', 1))
-    menu_portion = {}
-    for key, values in DATA.items():
-        if key == 'buter':
-            for i in values:
-                menu_portion[i] = values[i] * portion
-    context = {
-        'recipe': menu_portion,
-    }
-
-    return render(request, 'calculator/index.html', context)

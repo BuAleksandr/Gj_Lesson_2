@@ -16,11 +16,9 @@ Including another URLconf
 
 from django.urls import path
 
-from calculator.views import omlet, pasta, buter
+from calculator.views import recipe
 
 urlpatterns = [
-    path('omlet/', omlet),
-    path('pasta/', pasta),
-    path('buter/', buter)
+    path('recipe/<dish>/', recipe),
     # здесь зарегистрируйте вашу view-функцию
 ]
